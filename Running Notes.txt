@@ -1,0 +1,250 @@
+Frontend - Client technologies
+HTML
+CSS
+Javascript
+Jquery
+Ajax - jquery
+
+1.Desktop Applictions   - Windows Forms
+2.Websites              - Display the content to the world
+3.Web applications      - TO store the information or Data in to Database.
+4.Mobile applications   - 
+
+url extention:
+http://mydomain.com/home.aspx
+http://mydomain.com/home.jsp
+http://mydomain.com/home.PHP
+
+
+
+http://mydomain.com/products/productid
+
+
+Dotnet:
+MVC
+WebApi
+
+Java:
+Java Springboot
+Hibernate
+
+PHP: 
+Laravel
+codigniter
+
+Frameworks:
+React or React Js - facebook
+Angular JS or ANgular - google
+Express Js 
+Vue Js
+
+
+
+Day 2:
+Javascript:
+javascript is a dynamic scripting language
+interpreted at client side by V8 engine
+Javascript executes both server and client side
+
+
+HTML  - W3c
+Javascript - ES  Ecmscript - standard scripting language
+
+NodeJS:
+javascript runtime environment
+Cross platform
+open source
+
+
+javascript and typescript
+typescript - microsoft -  Angular use typescript
+
+Javascript - ReactJS
+
+1.Inline - in html element
+2.Internal - <head><Script></script></head> or <body><Script></script></body>
+3.External - example:  <Script src="https://images-na.ssl-images-amazon.com/images/I/215h87l68bL.js"></Script>
+
+
+Single Page application
+
+Var i=10;
+i = 'koteswr';
+i = true;
+
+let i=1;
+i=20;
+let i=20;
+
+const a=20;
+
+if(true){
+let i=10;
+cons
+}
+
+functions in javascript - ES5
+class using in javascript programming - ES6
+
+Day3:
+var - function scoped - can be reassinged and redeclared
+let - block scoped    - can be ressigned but not redeclared
+const - block scoped   - can't be ressigned con't be  redeclared
+
+let arr=[1,2,3,45,27,34];
+
+console.log('for of');
+//for of - foreach
+for(let num of arr){
+	console.log(num);
+}
+
+console.log('for in');
+//for in - for
+for(let num in arr){
+	console.log('item='+num);
+}
+
+let newarr= arr.map((val,indx)=>{
+	return val*2;
+})
+console.log('Map example');
+console.log(newarr);
+
+let students= [{name:'koteswar', marks:'37'},{name:'srikanth', marks:'37'},{name:'venkat', marks:'10'}];
+
+console.log(students);
+let filterStudents= students.map((student,index)=>(
+{
+	...student, remark:'pass'
+}
+));
+console.log(filterStudents);
+
+//spread operator
+console.log('spread operator');
+let num1=[1,2,3,6,7];
+let num2=[4,5];
+let num3=[...num1,...num2]
+for(let num of num3){
+	console.log(num);
+}
+num1[0]=1
+...num1=1,2,3,6,7
+
+//Rest operator
+console.log('Rest operator');
+function sum(...numbers)
+{
+	return numbers.reduce((total,n)=>total+n,0);
+}
+console.log(sum(1,2,3,4));
+
+1,2,3,4 = ...numbers //multiple element into one array/object
+
+Day4:
+VS Code - IDE
+NodeJS  - Javascript runtime environement
+
+
+Most ES6 concepts:
+Difference between var, let, const
+Arrow functions vs normal functions
+Promises
+Destructuring
+Spread vs Rest operator
+Classes and inheritance
+
+
+console.log('For loop');
+for(let i1=0;i1<3;i1++){
+    console.log(i1);
+}
+
+console.log('Named function');
+
+let arr_add=[50,100];
+//Named function
+function add(a,b){
+    return a+b;
+}
+console.log(add(...arr_add));
+
+console.log('anonymous function');
+//anonymous function 
+let add1 = function(a,b) {
+    return a*b;
+}
+console.log(add1(...arr_add));
+
+console.log('arrow function');
+//arrow function 
+let add2 = (a,b) => b/a;
+console.log(add2(...arr_add));
+
+
+//arguments - inbuild object that contains array of args passed
+function callFn(a,b){
+    console.log(arguments[0]);
+    console.log(arguments[1]);
+}
+callFn(3,5);
+
+let callFn1=(...arr)=>{console.log(arr[0]);console.log(arr[1]);console.log(arr[2]);}
+callFn1('abc','def','efg');
+
+  console.log('reduce');
+//reduce()
+let num1=[1,2,3,6,7];
+let result = num1.reduce((total,n)=>total+n,0);
+  console.log(result);
+//total - accumulate variable is nothing but result
+//n     - current value
+//0     - initial value
+
+ console.log('map');
+//map()
+const numbers = [1, 2, 3];
+const doubled = numbers.map(num => num * 2);
+console.log(doubled);
+
+//Transforming data
+//Formatting objects
+
+console.log('filters');
+const users = [
+  { name: "John", age: 20 },
+  { name: "Sam", age: 15 },
+  { name: "David", age: 25 }
+];
+const adults = users.filter(user => user.age >= 18);
+console.log(adults);
+
+Day5:
+
+Destructuring:
+Destructuring in JavaScript is a feature that allows you to extract values from arrays or properties from objects into separate variables in a clean and readable way.
+
+//1.Basic Array Destructuring
+const numbers = [10, 20, 30];
+const [a, b, c] = numbers;
+console.log(a); // 10
+console.log(b); // 20
+console.log(c); // 30
+
+Export Class Person{
+constructor(){
+}
+show(){}
+}
+
+Day6:
+
+Day7:
+Evolution of ReactJS
+0.3.0 -0.8.0  - 2013
+v15           - 2016
+v16           - 2017
+v17           - 2020
+v18           - 2022
+v19           - Dec2024

@@ -1,0 +1,144 @@
+Destructuring:
+Destructuring in JavaScript is a feature that allows you to extract values from arrays or properties from objects into separate variables in a clean and readable way.
+
+//1. Array Destructuring
+//Basic Example:
+const numbers = [10, 20, 30];
+
+const [a, b, c] = numbers;
+
+console.log(a); // 10
+console.log(b); // 20
+console.log(c); // 30
+
+//Skipping Values
+const colors = ["red", "green", "blue"];
+
+const [first, , third] = colors;
+
+console.log(first); // red
+console.log(third); // blue
+
+
+//Default Values
+const [x = 1, y = 2] = [10];
+
+console.log(x); // 10
+console.log(y); // 2
+
+//Swapping Variables
+let a = 5;
+let b = 10;
+
+[a, b] = [b, a];
+
+console.log(a); // 10
+console.log(b); // 5
+
+//2. Object Destructuring
+//Basic Example
+const person = {
+  name: "John",
+  age: 25
+};
+
+const { name, age } = person;
+
+console.log(name); // John
+console.log(age);  // 25
+
+//Renaming Variables
+const person = {
+  name: "John",
+  age: 25
+};
+
+const { name: fullName, age: years } = person;
+
+console.log(fullName); // John
+console.log(years);    // 25
+
+
+//Default Values
+const user = {
+  name: "Alice"
+};
+
+const { name, country = "India" } = user;
+
+console.log(name);    // Alice
+console.log(country); // India
+
+//Nested Object Destructuring
+const employee = {
+  id: 101,
+  address: {
+    city: "Hyderabad",
+    state: "Telangana"
+  }
+};
+
+const {
+  address: { city, state }
+} = employee;
+
+console.log(city);  // Hyderabad
+console.log(state); // Telangana
+
+
+//3. Destructuring vs Normal Access
+//Without Destructuring
+const person = {
+  name: "John",
+  age: 25
+};
+
+const name = person.name;
+const age = person.age;
+
+//With Destructuring
+const { name, age } = person;
+
+
+//Destructuring undefined causes error
+const { a } = undefined; // Error
+
+//Safe way:
+
+const { a } = obj || {};
+
+
+
+
+
+//1. Arrow Functions (=>)
+//Shorter function syntax.
+//Old Syntax
+
+function add(a, b) {
+  return a + b;
+}
+//ES6 Arrow Function
+const add = (a, b) => a + b;
+
+console.log(add(2, 3));
+//Single Parameter
+const square = n => n * n;
+//No Parameter
+const greet = () => "Hello";
+
+//2. Template Literals
+
+//Use backticks ` instead of quotes.
+
+//Before ES6
+var name = "John";
+console.log("Hello " + name);
+//ES6
+const name = "John";
+
+console.log(`Hello ${name}`);
+
+
+//Prototype-Based Programming in JavaScript
+
