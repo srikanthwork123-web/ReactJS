@@ -248,3 +248,78 @@ v16           - 2017
 v17           - 2020
 v18           - 2022
 v19           - Dec2024
+
+Day8:
+
+local:
+<script src="script/js/first.js"></script>
+
+minification:
+<script src="https://c.amazon-adsystem.com/bao-csm/forensics/a9-tq-forensics.min.js"></script>
+
+CDN:
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+Create below html using react:
+<div>
+    <h1 id="bg-blue">This is React JS Demo</h1>
+    <p className='para' id='fontvalue'>This is Paragraph</p>
+</div>
+
+Day9:
+React Local Setup
+=================
+1. download Nodejs and install
+   https://nodejs.org/en/download/
+
+2. check if nodejs is installed? (open cmd and run the below command)
+   node -v 
+
+3. check if NPM is installed? (NPM-Node Package Manager)
+   npm -v    
+   
+4.  go to the folder where you want to create project(d:/sanjay/react)& run the below command	
+	npx create-react-app project1 (npx-node package executer)
+                 
+5. go to the created project folder(project1) and start your React application
+   cd project1
+   npm start 
+  
+6. A new browser window will pop up with your newly created React App! 
+   open a browser tab and type 'http://localhost:3000/' if browser doesn't open automatically.
+ 
+
+.html  - only html code will write
+.css   - write css only
+.js    - write javascript only
+.cs    - write csharp code only
+.jsx   - we can write html and javascript
+
+
+React Basics:
+.How to create React Application
+.Application Folder Structure
+.What is JSX
+.Components(Functional & Class)
+.Ways to apply CSS
+.Props
+.state
+
+React Intermediate:
+.Conditional Rendering : 
+.React Events : 
+.React Lists 
+.Form Handling
+.Fragments
+
+React Advanced Concepts:
+.React Hooks
+.Redux
+
+React commands:
+npm create vite@latest demo1 -- --template react ( create react project )
+cd project-folder - enter into project folder
+npm run dev - appliction running command
+npm install - node_modules install 
+
