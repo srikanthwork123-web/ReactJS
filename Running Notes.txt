@@ -239,7 +239,13 @@ show(){}
 }
 
 Day6:
-
+Opps concepts with ES6 concepts
+1.Class
+2.Constructor
+3.Super - base class constructor
+4.Inheritence
+5.polymorphism
+6.Encapsulation
 Day7:
 Evolution of ReactJS
 0.3.0 -0.8.0  - 2013
@@ -248,6 +254,8 @@ v16           - 2017
 v17           - 2020
 v18           - 2022
 v19           - Dec2024
+
+Expalin the examples on Import and export with employee.js and person.js and customer.js 
 
 Day8:
 
