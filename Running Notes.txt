@@ -331,3 +331,121 @@ cd project-folder - enter into project folder
 npm run dev - appliction running command
 npm install - node_modules install 
 
+Day10:
+
+What React is
+=============
+-React is a JavaScript library for building user interfaces.
+-It is an open-source, component based library. 
+-It is created & maintained by Facebook.
+-React is used to build single page applications.
+-React allows us to create reusable UI components.
+-ReactJS uses virtual DOM based mechanism to fill in data (views) in HTML DOM. 
+
+
+React is NOT a framework
+========================
+-React is a library and not a framework.
+-The difference between a library and a framework is that a library only helps 
+ you in one aspect whereas a framework helps you in many aspects. 
+Let's take an example:
+-React is a library because it only takes care of your UI.
+-Angular, on the other hand, is a framework because it handles much more than the UI 
+ (It handles Dependency Injection, CSS encapsulation, httpClient, Form validation, routing etc.)
+
+
+	Framework										Library
+=========================================================================
+-group of libraries to make your work easier	-performs specific, well-defined operations
+-provides ready to use tools,standards			-provides reusable functions for our code
+ templates for fast application development
+-Collection of libraries & APIs					-collection of helper functions,objects
+-cann't be easily replaceable 					-can be easily replaceable by another
+-angular,vue									-jQuery,ReactJs,lodash,moment
+-Hospital with full of doctors					-A doctor who specializes in one 		
+
+
+
+		React						Angular
+===========================================================
+1. Library-2013					 1. Framework-2009
+2. Light-weight					 2. Heavy
+3. JSX + Javascript				 3. HTML + Typescript
+4. Uni-Directional				 4. Two-way
+5. Virtual DOM					 5. Regular DOM
+6. Axios 				 		 6. HttpClientModule 
+7. No 		 					 7. Dependency Injection
+8. No							 8. Form Validation
+9. extra libraries needed		 9. No additional libraries
+10. UI heavy					 10. Functionality Heavy
+
+
+
+
+React Features
+==============
+-JSX
+-Components  (easy to build, easy to extend,reusable,loosly coupled)
+-One-way Data Binding (watchers will not be there for bindings)
+-Virtual DOM
+-Easy to learn because of its simple Design
+-Performance
+
+
+
+Why virtual DOM?
+===============
+-Frequent DOM manipulations are expensive and performance heavy. 
+-Every time the DOM changes, browser would need to recalculate the CSS, 
+ run layout and repaint the web page.
+-we need a way to minimize the time it takes to repaint the screen. 
+ This is where the Virtual DOM comes in.
+ 
+ 
+What Virtual DOM is
+===================
+-React uses virtual DOM to enhance its performance.
+-Virtual DOM is a virtual representation of the real DOM.
+-A virtual DOM is the DOM where a representation of the UI is kept in memory and synced with the DOM.
+-When state changes occur, the virtual DOM is updated and the previous and current version of  virtual DOM is compared. This is called “diffing”.
+-It then makes sure that batched updates are sent to the real DOM for repainting or re-rendering of the UI.
+-React never reads from real DOM, only writes to it.
+
+
+ 
+How does React Work? (Virtual DOM)
+====================
+-A virtual DOM is a lightweight JavaScript object which is just a copy of the
+ real DOM. It is a node tree that lists the elements, their attributes and content as 
+ Objects and their properties.
+-React creates a VIRTUAL DOM in memory.
+-Instead of manipulating the browser's DOM directly, React creates a virtual DOM in memory, where it does all the necessary manipulations, before making the changes in the browser DOM.
+-React finds out what changes have been made,and changes only what 
+ needs to be changed in the actual DOM.
+ 
+ 
+-Whenever application state/props changes, 
+ these are the steps that React performs in order to optimise performance.
+a. Generate a new Virtual DOM that represents the new state of our application.
+b. Compare the old Virtual DOM (which represents the current HTML DOM) vs the new Virtual
+   DOM.
+c. Based on (b) find the minimum number of operations to transform the old Virtual DOM (which represents the current HTML DOM) into the new Virtual DOM.
+
+
+
+What is the difference between Shadow DOM and Virtual DOM?
+==========================================================
+-The Shadow DOM is a browser technology designed primarily for scoping variables and CSS in web components. 
+-The Virtual DOM is a concept implemented by libraries in JavaScript(React) on top of browser APIs.
+
+
+
+ReactDOM
+========
+-ReactDOM is the glue between React and the DOM.
+-React creates a virtual representation of your User Interface (what we call a Virtual DOM) and then ReactDOM is the library that efficiently updates the DOM based on the Virtual DOM.
+-The reason why the Virtual DOM exists is to figure out which parts of the UI need to be updated and then batch these changes together. 
+-ReactDOM receives those instructions from React and then efficiently updates the DOM.
+
+
+
