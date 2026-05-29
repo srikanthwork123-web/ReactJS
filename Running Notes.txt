@@ -447,5 +447,19 @@ ReactDOM
 -The reason why the Virtual DOM exists is to figure out which parts of the UI need to be updated and then batch these changes together. 
 -ReactDOM receives those instructions from React and then efficiently updates the DOM.
 
+Day11:
+React Project - Folder Structure
+================================
+node_modules/	:  Provides npm packages to the entire workspace. Workspace-wide node_modules dependencies are visible to all projects.
+public/ 		:  Only files inside the `public` folder can be referenced from the HTML
+src/			:  Source files for the root-level application project.
+.gitignore		:  Specifies intentionally untracked files that Git should ignore.
+package.json	:  Configures npm package dependencies that are available to all projects in the workspace. 
+package-lock.json : Provides version information for all packages installed into node_modules by the npm client. 
+README.md		: Introductory documentation for the application.
+
+Day12:
+
+
 
 
