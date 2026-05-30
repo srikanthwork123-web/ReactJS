@@ -458,8 +458,84 @@ package.json	:  Configures npm package dependencies that are available to all pr
 package-lock.json : Provides version information for all packages installed into node_modules by the npm client. 
 README.md		: Introductory documentation for the application.
 
+
 Day12:
 
+Babel:
+In the React ecosystem, Babel is a JavaScript transpiler that converts modern JavaScript (ES6+) and JSX syntax 
+into a backwards-compatible version of JavaScript that browsers can actually understand
+
+Day13:
+
+React Project Flow
+==================
+1. index.html  --> <div id="root"></div> (container to inject component)
+2. main.jsx   --> root = ReactDOM.createRoot(document.getElementById('root'));
+				   root.render(<App />)
+                   where        what
+3. App.jsx      -->  AppComponent Code
+
+React Without JSX
+=================
+-Code written with JSX will be converted to use React.createElement(). 
+-we don't have to use React,createElement() when we use JSX. 
+Syntax : React.createElement(type,[props],[...children])
+example: React.createElement(div , {name:'myDiv'},[<p> , <span>])
+-The first argument is the type of element we're creating
+-The second argument is props object.
+-The last argument is the children of that element.
+
+ex:  <div class='test'>This is a div</div>  
+-Babel converts the above JSX line to the below code
+return React.createElement("div", {
+    class: "test"
+  }, "This is a div");
 
 
+React Element
+=============
+-A React element is a JavaScript object with specific properties and methods that React 
+assigns and uses internally. 
+-React elements are the instructions for how the browser DOM get created. 
+-When we use ReactDOM library React elements are getting changed into DOM elements. 
+-However, when we use React Native, React elements are getting changed into native UI elements of Android or iOS.
+-We create React elements using a function called createElement(). 
+-createElement() method is part of the Top-Level React API, and we use it to create React elements. 
+-This method takes three parameters:
+	a. The first argument defines type of element to create. (h1/p/div)
+	b. The second argument defines properties or attributes of the element.
+	c. The third argument represents the element's children, any nodes or simple text that are inserted between the opening and closing tag.
+	
+const hello = React.createElement(
+	"H1",
+	{id: "msg", className: "title"},
+	"Hello React Element"
+);	
 
+-document.createElement() returns a DOM element (for example a div or an h1). 
+ Whereas React.createElement() returns an object that represents the DOM element.
+ 
+ 
+JSX
+===
+-JSX (JavaScript Syntax Extension)is a special syntax for React that makes it easier to represent the UI.
+-JSX is used to describe the structure & content of a react component.
+-JSX allows us to add the elements in DOM without using createElement() or appendChild() methods.
+-JSX looks similar to HTML but it is not HTML.
+-JSX code we write gets transformed into React.createElement().
+-JSX is not part of browser. we need a tool(Babel)(a JavaScript compiler) 
+ to transform it to valid JavaScript.
+-JSX doesn't support void tags.
+ <img>  		invalid
+ <img></img>    valid
+ <img /> 		valid
+-Since JSX is closer to JavaScript than to HTML, React DOM uses camelCase property naming convention instead of HTML attribute names.
+-ex: class becomes className in JSX, and tabindex becomes tabIndex.
+
+<hr>
+<br/>
+<input type='text'/>
+<img src=''/>
+
+<div></div>
+<h1><h1/>

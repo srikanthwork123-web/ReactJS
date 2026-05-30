@@ -1,0 +1,7 @@
+.menu {
+    display: flex;
+    justify-content: space-around;
+    background-color: black;
+    color: rgb(243, 238, 238);
+    padding: 10px;
+}
