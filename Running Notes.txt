@@ -539,3 +539,89 @@ JSX
 
 <div></div>
 <h1><h1/>
+
+Day 14:
+
+Component
+=========
+-Components are the most basic UI building block of a React application.
+-Each Component is responsible for outputting a small,reusable piece of HTML.  
+-A Component Represents a part of the User Interface.
+-Components are Re-Usable and can be nested inside other component.
+-A React application contains a tree of components.
+-React components let you split the UI into independent, reusable pieces, 
+  and think about each piece in isolation. 
+
+
+2 types Of Component
+====================
+1. Functional Component ( stateless/presentational/dumb)
+2. Class Component ( statefull)
+
+-The simplest way to define a component in React is to write a JavaScript function:
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+-we can also use the ES6 class syntax to write components
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
+
+-A functional component is just a plain JavaScript function which accepts props 
+ as an argument and returns a React element.
+-Functional Components are faster and much simpler than Class Components.
+-Functional components are very useful in React, especially when you want to isolate state management from the component. That’s why they are often called stateless components.
+ 
+-React class components can be defined by extending React.Component or React.PureComponent.
+-React component can be defined as an ES6 class that extends the base React.Component class.
+-a React class component must define a render method that specifies how the component renders to the DOM. 
+-The render method returns React nodes, which can be defined using JSX syntax as HTML-like tags
+-React requires that the first letter of a component class be capitalized. 
+  This is required because based on capitalization JSX can tell the difference between 
+  an HTML tag and a component instance. If the first letter of a name is capitalized, 
+  then JSX realizes it’s a component instance; if not, then it’s an HTML tag.
+
+
+	Functional Component 			Class Component
+	---------------------			---------------
+1. No 'this' keyword				1. More feature rich
+2. solution without state			2. Maintain own private data- state
+3. Mainly for UI 					3. Complex UI Logic
+4. Stateless/dumb/Presentational    4. Provide Life cycle hooks
+	
+
+
+
+When to use a Class Component over a Function Component?
+========================================================
+-If the component needs state or lifecycle methods then use class component 
+ otherwise use function component. 
+-However, from React 16.8 with the addition of Hooks, we can use state , 
+ lifecycle methods and other features  that were only available in class component 
+ in function component also. 
+-So, it is always recommended to use Function components, unless you need a React functionality whose Function component equivalent is not present yet, like Error Boundaries.
+
+ 
+imports & exports
+=================
+-Default import:
+  import DefaultMember from 'src/my_lib';
+-Named imports:
+  import { name1, name2 } from 'src/my_lib';
+-Combining a default import with named imports
+  import DefaultMember, { name1, name2 } from 'src/my_lib';
+
+
+Named Export vs Default Export
+==============================
+-Only one default export is allowed per file,where as multiple named exports are allowed per file.
+-Named exports are useful to export several values. 
+-A default export can be a function, a class, an object(cann't be variables). 
+ This value is to be considered as the “main” exported value since it will be the simplest to import
+-The name of imported module has to be the same as the name of the exported module for named exports.
+-The naming of import is completely independent in default export and we can use any name we like.
+ex: import MyReact, { MyComponent } from "react";
+           correct    wrong-namedExport
