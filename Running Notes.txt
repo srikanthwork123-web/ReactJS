@@ -625,3 +625,21 @@ Named Export vs Default Export
 -The naming of import is completely independent in default export and we can use any name we like.
 ex: import MyReact, { MyComponent } from "react";
            correct    wrong-namedExport
+
+Day15:
+html: 
+method1: inline css for single element
+<h1 style='{color:red;backgroundColor:lightyellow;fontSize:20px;}'>My Style Example</h1>
+method2: inner css with same file
+<head><style>
+  .mystyles{
+    color: red;
+    font-size: 20px;
+    background-color: lightyellow;
+  }
+</style></head>
+<body>
+  <h1 class="mystyles">My Style Example</h1>
+</body>
+Method3: external css file:
+<link rel="stylesheet" href="style.css">
