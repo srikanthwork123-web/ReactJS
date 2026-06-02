@@ -13,8 +13,6 @@ function App() {
       <FragmentExample />
       <FragmentShortcutExample />
       <ButtonExample />
-      <StyleExample />
-      <ExpressionExample />
     </>
   )
 }
@@ -67,8 +65,8 @@ export function ButtonExample() {
 }
 export function StyleExample() {
   const mystyles = {
-    color: "green",
-    fontSize: "200px",
+    color: "red",
+    fontSize: "20px",
     backgroundColor: "lightyellow",
   };
 
@@ -80,16 +78,5 @@ export function StyleExample() {
 }
 
 
-export function ExpressionExample() {
-  return (
-    <>
-      {sum(4,5)}
-      <h1>My Expression Example</h1>
-      <p>It has {218 * 1.36} horsepower</p>
-    </>
-  );
-}
-function sum(n1,n2){
-  return n1 + n2;
-}
 export default App
+
