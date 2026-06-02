@@ -703,3 +703,31 @@ CSS Modules
 -it will only apply the classname from css module even if both files have same 'error' class;
 
 Day16:
+How to Use Bootstrap in a React application
+===========================================
+1. install bootstrap
+   npm i bootstrap@3.3.7 (particular version)
+          OR
+   npm i bootstrap     (latest version)
+   npm i bootstrap-icons 
+   
+	
+2. use 'bootstrap.min.css' in index.js file
+   import "bootstrap/dist/css/bootstrap.min.css";
+   import "bootstrap/dist/js/bootstrap.bundle.min.js";
+   import 'bootstrap-icons/font/bootstrap-icons.css';
+   
+
+How to Use Bootstrap in a React application using CDN Link
+===========================================================
+-Bootstrap can be used in a react application just by adding the below CDN link in 'index.html'
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+ 
+
+
+How to use Bootstrap icons
+==========================
+<i className="bi-alarm"></i>
+<i className="bi-airplane" style={{ fontSize: "2rem", color: "cornflowerblue" }}></i>
+
+
