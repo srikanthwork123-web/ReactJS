@@ -728,6 +728,22 @@ How to Use Bootstrap in a React application using CDN Link
 How to use Bootstrap icons
 ==========================
 <i className="bi-alarm"></i>
-<i className="bi-airplane" style={{ fontSize: "2rem", color: "cornflowerblue" }}></i>
+<h1><i className="bi-airplane" style={{ fontSize: "2rem", color: "cornflowerblue" }}></i></h1>
 
-
+Day17:
+props
+=====
+-Props are inputs to components.
+-Props stand for properties and is a special keyword in React.
+-Attributes on Components get converted into an object called Props.
+-Helps to Pass custom data to a component.
+-props are used to pass data and methods from a parent component to a child component.
+-data with props are being passed in a uni-directional flow. (one way from parent to child).
+-We can pass props to any component as we declare attributes for any HTML tag
+ <ChildComponent someAttribute={value} anotherAttribute={value}/>
+-React props passed with just their name have a value of true.
+ <myComponent showTitle={true}> 
+ <myComponent showTitle> 
+-The props can be accessed as shown below
+ this.props.propName; (Class Component)
+ props.propName; (Functional Component)
