@@ -35,3 +35,66 @@ render(){
   );
  }
 }
+
+export class UserMapClass extends React.Component{
+
+constructor(props){
+    super(props);
+}
+
+render(){
+  return (
+    <>
+       <h2>My Name is {this.props.name} and age is {this.props.age} and Location: {this.props.location}</h2>
+    </>
+  );
+ }
+}
+
+export function UserDestructuring(props) {
+    const {name, location} = props.userinfo;
+    return (
+        <div>
+            <h4>Name: {name}</h4>
+            <p>Location: {location}</p>
+        </div>
+    );
+}
+
+export class UserDestructuringClass extends React.Component{
+
+constructor(props){
+    super(props);
+} 
+render(){
+  const {name, location} = this.props.userinfo;
+  return (
+    <div>
+      <h4>Name: {name}</h4>
+      <p>Location: {location}</p>
+    </div>
+  );
+ }
+}   
+
+export function UserDestructuringRest(props) {
+    const {name, ...rest} = props.userinfo;
+    return (
+        <div>
+            <h4>Name: {name}</h4>
+            <h4>Age: {rest.age}</h4>
+            <p>Location: {rest.location}</p>
+        </div>
+    );
+}
+
+export function UserDestructuringDefault(props) {
+    const {name, age,location = "Delhi"} = props.userinfo;
+    return (
+        <div>
+            <h4>Name: {name}</h4>
+            <h4>Age: {age}</h4>
+            <p>Location: {location}</p>
+        </div>
+    );
+}
