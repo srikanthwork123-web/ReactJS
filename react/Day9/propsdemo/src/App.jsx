@@ -18,6 +18,7 @@ function App() {
        <PropsDestructuringExample/>
        <PropsDestructuringRestExample/>
        <PropsDestructuringDefaultExample/>
+        <PropsChildrenExample/>
     </>
   )
 }
@@ -26,7 +27,7 @@ export function PropsExample() {
   return (
     <>
       <h3>Props Basic Example</h3>
-      <User name="John" age={30} location="New York"/>
+      <User name="John" age={30} />
     </>
   );
 }
@@ -92,6 +93,7 @@ export function PropsMapClassExample() {
      <h3>Props Map Class Example</h3>{
      userData.map((user) => {
         return <UserMapClass key={user.id} id={user.id} name={user.name} age={user.age} location={user.location}/>
+       
       })
      }
     </>
@@ -130,6 +132,41 @@ export function PropsDestructuringDefaultExample() {
      <h3>Props Destructuring Default Example</h3>
      <UserDestructuringDefault userinfo={y}/>
      <UserDestructuringDefault userinfo={z}/>
+    </>
+  );
+}
+
+export function PropsChildrenExample() {
+   return (
+    <Parent/>
+  );
+}
+
+function Son(props) {
+  return (
+    <div style={{background: 'lightgreen'}}>
+      <h2>Son</h2>
+      <div>{props.children}</div>
+    </div>
+  );
+}
+
+function Daughter(props) {
+
+  return (
+    <div style={{background: 'lightblue'}}>
+      <h2>Daughter</h2>
+      <div>{props.children}</div>
+    </div>
+  );
+}
+
+function Parent() {
+  return (
+    <>
+      <h1>My two Children</h1>
+      <Son><p>This was written in the Parent component,but displayed as a part of the Son component</p></Son>
+      <Daughter><p>This was written in the Parent component, but displayed as a part of the Daughter component</p></Daughter>
     </>
   );
 }

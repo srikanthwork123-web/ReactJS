@@ -9,6 +9,11 @@ export function User(props) {
         </div>
     );
 }
+// User.propTypes = {
+//   name: PropTypes.string.isRequired,
+//   age: PropTypes.number,
+//   location: PropTypes.string.isRequired
+// };
 export function UserArray(p){
     console.log(p)
     return(
