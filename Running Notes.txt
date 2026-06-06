@@ -861,3 +861,17 @@ Ex:
 Greet.propTypes = {	
     children: PropTypes.element	
 };
+
+Day20:
+
+Functional Components-  useState() - Hooks 
+
+1.{useState} - it is using from react library and named export so we are using {}
+2.useState() is to initialize the default value and return array -> useState(0) - 0 is default value
+3.It has value and functionName  -> [value, updateCounter]
+4.Once you call the method of updateCounter, it will update the value and rerender the component.
+
+Class components   - state - Life cycle methods
+
+1.State is object and it is build in React.component from react library.
+2.We create a state object and it is updating though setState
