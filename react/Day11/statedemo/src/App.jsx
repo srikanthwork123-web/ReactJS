@@ -1,4 +1,4 @@
-import { useState,Component } from 'react'
+import React, { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
@@ -11,6 +11,9 @@ function App() {
       <BasicCounter />
       <StateCounter />
       <StateClassExmple />
+      <StateClassInputExample />
+      <StateFunctionObject/>
+      
     </>
   )
 }
@@ -39,7 +42,7 @@ function StateCounter() {
   )
 }
 
-class StateClassExmple extends Component{
+class StateClassExmple extends React.Component{
 state={counter:0,name:"John Doe",age:30}
 render(){
   return (
@@ -55,5 +58,47 @@ render(){
  }
 }
 
+class StateClassInputExample extends React.Component{
+  state={product:"Samsung S26",price:25000}
+  constructor(){
+    super();
+    this.handlePriceChange=this.handlePriceChange.bind(this);
+  }
+  render(){
+    return (
+     <>
+      <p>Product :{this.state.product}</p>
+      <p>Price :{this.state.price}</p>
+      <input id='price' type="number" placeholder='Enter Price'/>
+      <button onClick={this.handlePriceChange}>Change</button>
+     </>
+    )
+   }
+   handlePriceChange(){
+        let newPrice = document.getElementById("price").value;
+        console.log(newPrice);
+        this.setState({price: newPrice},()=>{console.log(this.state)});
+     }
+ }
+function StateFunctionObject(){
+  const [product,updateProduct]=useState({"pname": "Samsung S26 mobile", "price": 20000});
+const updatePrice=()=>{
+      let pname1=document.getElementById('productname').value;  
+      let price1=document.getElementById('priceval').value;
+     console.log(pname1);
+     console.log(price1);
+     updateProduct({...product, pname: pname1,price: price1});
+  }
+return (
+   <>
+       <h1>Product Name :{product.pname}</h1>
+       <p>Price Value :{product.price}</p>
+       <p>Product Value :{JSON.stringify(product)}</p>
+       <input id="productname" type="text"/>
+       <input id="priceval" type="text"/>
+       <button onClick={updatePrice}>Update</button>      
+   </>
+  )
+}
 
 export default App

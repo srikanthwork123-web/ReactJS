@@ -873,5 +873,85 @@ Functional Components-  useState() - Hooks
 
 Class components   - state - Life cycle methods
 
-1.State is object and it is build in React.component from react library.
-2.We create a state object and it is updating though setState
+-State is object and it is build in React.component from react library.
+-We create a state object and it is updating though setState
+
+1.We are update state directly then we get undefind error to avoid that we use bind method.
+2 we use bind method to update state without updating directly in setState()
+3.we should call super() in constructor after that we should write our logic
+4.setState is asynchronous method. setState allow two inputs
+5.object and call back function -> object is state and call back function if we want to any action after updating state.
+6.before React 16 we can declare State object in constructor only
+7.After React 16 we can declare state object in outside or inside constructor.
+
+Day21:
+
+Why State variables
+===================
+Re-rendering : when state variable changes, React re-renders the component with new value
+Persistence : states are persisted accross re-renders
+
+
+States
+======
+-The State of a component is an object that holds some data that may change over the lifetime of the component.
+-whenever the state object changes,react will re-render the component. 
+-States are Mutable(can be changed), and states are local to the component, cann't be used by other components directly
+-Keep the state minimal , avoid using state for static data. 
+
+
+
+State in Class Component
+========================
+-class components have a state object , where all the state variables are declared. 
+ To update state variables, setState() should be used;
+-State object is usually initialized inside the constructor in class components.
+-UI will not Re-render when we change state directly, setState() should be used.
+  this.counter = this.counter + 1; // re-render won't happpen
+  this.setState({counter:this.state.counter+1});  // re-render will happpen
+-use setState() to change the state of react Component. 
+ it ensures that render() gets called.
+-If a piece of code needs to be executed only after the state has been updated, then 
+ place that code in the callback function which is the second arguement to setState()
+ Syntax: setState( StateObject, callbackFunction);
+  ex:    setState( {} , ()=>{} );
+ 
+ 
+Note:
+-----
+-setState() actions are asynchronous. setState() doesn’t immediately mutate this.state.
+-React may group multiple setState() calls in to a single update for better performance
+-when we want to update the state based on the previous State value,
+ we need to pass a function as an arguement to setState() instead passing an object.
+ ex:- this.setState({ value: this.state.value + 1 });   
+      this.setState(prevState => ({ value: prevState.value + 1 }));   
+	
+
+
+State in Functional Component
+=============================
+-State in functional Component can be maintained using useState() hook.
+-useState() is used to declare a state variable in function component.
+-The only argument to the useState() Hook is the initial state.
+-It returns a pair of values: 
+  a. State value
+  b. function to update that state value. 
+  ex: const [count, setCount] = useState(0);
+-state updation is asynchronous, 
+   const increment = () => {
+    setCount(count + 1);
+	console.log(count);  // this will be executed before state update
+  };
+-If a piece of code needs to be executed only after the state has been updated, then place that code in the 'useEffect()'
+-when we want to update the state based on the previous State value,pass a callBack to setter
+ ex: setCount((prevState) => prevState + 1);
+	 setCount(count + 1);
+	 
+		Props        		  vs 					State
+=======================================================================
+1. Props are immutable.					1. State is mutable/modifiable.
+2. pass data from parent component 		2. contains own data & changes over time
+   to child component
+3. communicate between components		3. rendering dynamic changes
+4. props - Functional Comp				4. useState()      - Functional Comp
+   this.props - class comp		  		   this.state={}   - Class Comp
