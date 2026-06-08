@@ -956,7 +956,7 @@ State in Functional Component
 4. props - Functional Comp				4. useState()      - Functional Comp
    this.props - class comp		  		   this.state={}   - Class Comp
 
-Day21:
+Day22:
 
 state -> UI  - oneway binding
 
