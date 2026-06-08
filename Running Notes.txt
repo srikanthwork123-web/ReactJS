@@ -955,3 +955,32 @@ State in Functional Component
 3. communicate between components		3. rendering dynamic changes
 4. props - Functional Comp				4. useState()      - Functional Comp
    this.props - class comp		  		   this.state={}   - Class Comp
+
+Day21:
+
+state -> UI  - oneway binding
+
+state <-> UI - twoway binding
+
+TernaryOperator - isTure ?  true : false
+
+What is useEffect?
+
+useEffect is a React Hook used to perform side effects in functional components.
+
+Examples of Side Effects
+Fetching data from an API
+Updating the document title
+Setting up timers (setInterval, setTimeout)
+Accessing browser storage (localStorage)
+Adding/removing event listeners
+
+Before Hooks, these tasks were handled in class component lifecycle methods like:
+
+componentDidMount()
+componentDidUpdate()
+componentWillUnmount()
+
+With functional components, React provides the useEffect hook.
+
+useEffect(()=>{},[]) -> useEffect(callback, dependencies)
