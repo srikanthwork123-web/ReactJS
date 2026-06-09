@@ -984,3 +984,37 @@ componentWillUnmount()
 With functional components, React provides the useEffect hook.
 
 useEffect(()=>{},[]) -> useEffect(callback, dependencies)
+
+
+Day23:
+ componentDidMount = useEffect()
+ 
+syntax:
+import { useEffect } from 'react';
+
+useEffect(() => {
+   // Side Effect Code
+
+}, [dependencies]);
+
+Dependency Array Summary:
+
+useEffect(() => {})	               Every render
+useEffect(() => {}, [])	           Only once (mount)
+useEffect(() => {}, [count])	   When count changes
+useEffect(() => {}, [count, name]) When count or name changes
+
+What is useRef()?
+
+useRef() is a React Hook that allows you to:
+
+Access DOM elements directly
+
+syntax:
+import { useRef } from 'react';
+
+const refName = useRef(initialValue);
+
+Example:
+
+const inputRef = useRef(null);

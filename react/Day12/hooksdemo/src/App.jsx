@@ -73,7 +73,6 @@ export function HookUserEffect(){
     console.log("Component Loaded");
   });
 
-  
   return (
     <>
      <h1>useEffect example</h1>
