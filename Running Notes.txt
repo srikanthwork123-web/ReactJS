@@ -988,6 +988,7 @@ useEffect(()=>{},[]) -> useEffect(callback, dependencies)
 
 Day23:
  componentDidMount = useEffect()
+ Contstructor() -> render() - componentDidMount()
  
 syntax:
 import { useEffect } from 'react';
@@ -1007,8 +1008,13 @@ useEffect(() => {}, [count, name]) When count or name changes
 What is useRef()?
 
 useRef() is a React Hook that allows you to:
+Access DOM elements directly.
 
-Access DOM elements directly
+Normally, when state changes using useState(), React re-renders the component.
+Sometimes you want to store a value without re-rendering the component.
+
+Use useState when the value affects what the user sees on the screen.
+Use useRef when you need to remember a value or access a DOM element without triggering a re-render.
 
 syntax:
 import { useRef } from 'react';
@@ -1018,3 +1024,11 @@ const refName = useRef(initialValue);
 Example:
 
 const inputRef = useRef(null);
+
+Comparision:
+JavaScript	                      React
+document.getElementById()         useRef()
+Direct DOM manipulation	          React-managed reference
+Manual lookup	                  Persistent reference
+
+Day24:
