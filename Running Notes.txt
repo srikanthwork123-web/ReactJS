@@ -1111,6 +1111,7 @@ componentWillUnmount	return cleanup function
 
 
 Day24:
+
 What is useRef()?
 
 useRef() is a React Hook that allows you to:
@@ -1137,5 +1138,53 @@ document.getElementById()         useRef()
 Direct DOM manipulation	          React-managed reference
 Manual lookup	                  Persistent reference
 
+StrictMode:
+React 18's StrictMode intentionally invokes components twice during development to detect side effects and help developers write safer code. 
+This behavior only occurs in development mode and does not happen in production builds
+useMemo() is a React Hook used to memoize (cache) the result of an expensive calculation.
+
+It prevents unnecessary recalculations when a component re-renders.
+
+
+Day25:
+
+useMemo() is a React Hook used to memoize (cache) the result of an expensive calculation.
+It prevents unnecessary recalculations when a component re-renders.
+
+Syntax:
+
+import { useMemo } from 'react';
+
+const memoizedValue = useMemo(() => {
+  return expensiveCalculation();
+}, [dependencies]);
+
+Callback Function
+
+() => {
+   return value;
+}
+
+Dependency Array
+
+[dependencies]
+
+React recalculates the value only when dependencies change.
+
+What is useMemo?
+
+A React Hook that memoizes the result of a calculation and returns a cached value until dependencies change.
+
+Why use useMemo?
+
+To avoid unnecessary recalculations and improve performance.
+
+Does useMemo prevent re-rendering?
+
+❌ No.
+
+It only prevents recalculating a value.
+
+The component still re-renders.
 
 
