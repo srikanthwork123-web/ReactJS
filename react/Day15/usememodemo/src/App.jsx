@@ -1,9 +1,11 @@
-import { useEffect,useState,useMemo } from 'react'
+import { useEffect,useState,useMemo,useCallback } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 import usersData from './data.js'
+import Button from './CallBack.jsx'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,6 +18,10 @@ function App() {
       <FindingLargeSumWithUseMemoExample/>
       <FilerDataWithUseMemoExample/>
       <FilerLargeDataWithUseMemoExample/>
+      <CallBackBasicExmple/>
+      <UseCallBackWithBasicExample/>
+      <ParentChildCallBack/>
+      <CallBackWithAPIUsers/>
     </>
   )
 }
@@ -313,5 +319,100 @@ function FilerLargeDataWithUseMemoExample() {
 
 }
 
+function CallBackBasicExmple(){
+   const handleClick = () => {
+    console.log("Clicked");
+  };
+
+  return (
+   <>
+   <h1> Call Back Basic Exmple</h1>
+    <button onClick={handleClick}>
+      Click
+    </button>
+    </>
+  );
+
+}
+
+function UseCallBackWithBasicExample(){
+  const handleClick = useCallback(() => {
+
+      console.log("Button Clicked");
+
+  }, []);
+
+
+  return (
+
+    <>
+    <h1> Call Back with useCallback basic example</h1>
+    <button onClick={handleClick}>
+       Click
+    </button>
+    </>
+  );
+
+}
+
+function ParentChildCallBack(){
+
+      const [count,setCount] = useState(0);
+
+      const handleClick = useCallback(() => {
+
+      console.log("Clicked");
+
+      },[]);
+
+      return(
+      <>
+      <h1> Parent child components use call back hook</h1>
+      <h2>
+        Count : {count}
+      </h2>
+      <button
+        onClick={()=>setCount(count+1)}
+      >
+        Increment
+      </button>
+      <Button clickHandler={handleClick}/>
+
+      </>
+      )
+
+}
+
+function CallBackWithAPIUsers(){
+
+      const [users,setUsers]=useState([]);
+
+      const getUsers = useCallback(()=>{
+      fetch(
+      "https://jsonplaceholder.typicode.com/users"
+      )
+      .then(res=>res.json())
+      .then(data=>setUsers(data));
+      },[]);
+
+      return(
+      <>
+      <h1>Use Callback hook using API call</h1>
+        <button onClick={getUsers}>
+            Load Users
+        </button>
+
+      {
+        users.map(user=>
+          <p key={user.id}>
+            {user.name} - {user.email}  - {user.phone}
+          </p>
+        )
+      }
+
+      </>
+      )
+
+}
 
 export default App
