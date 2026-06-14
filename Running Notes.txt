@@ -1005,56 +1005,17 @@ useEffect(() => {}, [])	           Only once (mount)
 useEffect(() => {}, [count])	   When count changes
 useEffect(() => {}, [count, name]) When count or name changes
 
-React Functional Hooks and Class Component Lifecycle
+useEffect()
+----------
+-useEffect serves the same purpose as componentDidMount, componentDidUpdate, and componentWillUnmount.
+-useEffect() takes a callBack Function as 1st argument and Dependency arrray as 2nd argument.
+ ex: useEffect(()=>{} , []);
+-array contains dependencies for useEffect,variables on which useEffect depends on to re-run.
+-If 2nd argument is not present, effect runs everytime there is a state change.
+-When 2nd argument is there and the array is empty, the effect runs only once.(on component load)
+-If 2nd arguement is present, effect will only run if the values in the list change.
+-we can have many useEffects() in a component to track changes for diff variables.
 
-React components can be created in two ways:
-
-Class Components (older approach)
-Functional Components with Hooks (modern approach)
-1. Class Component Lifecycle
-
-A React class component goes through three main phases:
-
-1. Mounting
-2. Updating
-3. Unmounting
-Lifecycle Diagram
-Constructor()
-      ↓
-render()
-      ↓
-componentDidMount()
-
-------------------------
-
-Props/State Change
-      ↓
-shouldComponentUpdate()
-      ↓
-render()
-      ↓
-componentDidUpdate()
-
-------------------------
-
-Component Removed
-      ↓
-componentWillUnmount()
-
-===========================================================
-
-Why Hooks?
-
-Before React 16.8:
-
-State → Class Component Only
-Lifecycle → Class Component Only
-
-After React 16.8:
-
-State + Lifecycle
-        ↓
-Functional Components
 
 ========================================================
 Functional Components with Hooks
@@ -1091,13 +1052,13 @@ without writing class components.
 ============================================================
 Common React Hooks
 Hook	        Purpose
-useState	Manage State
-useEffect	Lifecycle Events
-useContext	Access Context
+useState	    Manage State
+useEffect	    Lifecycle Events
+useContext	    Access Context
 useRef	        DOM Reference
 useMemo	        Performance Optimization
-useCallback	Memoize Functions
-useReducer	Complex State
+useCallback     Memoize Functions
+useReducer	    Complex State
 useLayoutEffect	DOM Updates Before Paint
 
 Lifecycle Mapping:
@@ -1145,6 +1106,17 @@ useMemo() is a React Hook used to memoize (cache) the result of an expensive cal
 
 It prevents unnecessary recalculations when a component re-renders.
 
+
+Refs (Template Reference Variable)
+==================================
+-reference variables: help  to use data from one part of a template in another part of the template.
+-with reference variables, we can perform tasks such as respond to user input or
+ fine tune your application's forms.
+-Refs provide a way to access DOM nodes or React elements.
+-used to modify child comp (OR) DOM.
+-Managing focus, text selection , animations.
+-ex: this.myRef1 = React.createRef();  (class component)
+     const myRef1 = useRef();          (function component)
 
 Day25:
 
@@ -1207,6 +1179,8 @@ useCallback() is a React Hook used to memoize (cache) a function.
 
 It prevents a function from being recreated on every component re-render unless its dependencies change.
 
+"useCallback() is a React performance optimization hook that memoizes a function reference and prevents unnecessary function recreation during component re-renders until its dependencies change."
+
 Syntax:
 import {useCallback} from 'react'
 const memoizedFunction = useCallback(
@@ -1221,22 +1195,6 @@ In React, whenever a component re-renders:
 
 All variables are recreated
 All functions inside the component are recreated
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 What is useContext()?
@@ -1298,4 +1256,205 @@ ThemeContext
 ThemeProvider
 Child Component consuming the theme
 
+===========================================================
+Class component lifecycle:
 
+React Functional Hooks and Class Component Lifecycle
+
+React components can be created in two ways:
+
+Class Components (older approach)
+Functional Components with Hooks (modern approach)
+1. Class Component Lifecycle
+
+A React class component goes through three main phases:
+
+1. Mounting
+2. Updating
+3. Unmounting
+Lifecycle Diagram
+Constructor()
+      ↓
+render()
+      ↓
+componentDidMount()
+
+------------------------
+
+Props/State Change
+      ↓
+shouldComponentUpdate()
+      ↓
+render()
+      ↓
+componentDidUpdate()
+
+------------------------
+
+Component Removed
+      ↓
+componentWillUnmount()
+
+===========================================================
+
+Before React 16.8:
+
+State → Class Component Only
+Lifecycle → Class Component Only
+
+After React 16.8:
+
+State + Lifecycle
+        ↓
+Functional Components
+
+Day27:
+What is useLayoutEffect()?
+
+useLayoutEffect() is a React Hook that is similar to useEffect(), but it runs synchronously after React updates the DOM and before the browser paints the screen.
+
+In simple words:
+
+React updates the DOM
+useLayoutEffect() executes
+Browser paints the updated UI
+
+This allows you to measure DOM elements, modify layout, or prevent visual flickering.
+
+syntax:
+useLayoutEffect(() => {
+
+    // code runs after DOM update
+
+    return () => {
+       // cleanup
+    };
+
+}, [dependencies]);
+
+useLayoutEffect()
+Component Render
+       |
+       ↓
+React Updates DOM
+       |
+       ↓
+useLayoutEffect Executes
+       |
+       ↓
+Browser Paints Screen
+
+The browser waits until useLayoutEffect completes.
+
+Custom Hook:
+
+What is a Custom Hook?
+
+A Custom Hook is a JavaScript function created by developers to reuse stateful logic between multiple React components.
+
+A custom hook:
+
+Starts with the prefix use
+Can use built-in hooks like:
+useState
+useEffect
+useContext
+useRef
+Helps avoid duplicate code
+Separates business logic from UI components
+Why Do We Need Custom Hooks?
+
+Suppose we have two components:
+
+Component 1: User Login
+
+
+Component 1: User Login
+function Login() {
+
+  const [username, setUsername] = useState("");
+
+  return (
+    <input
+      value={username}
+      onChange={(e)=>setUsername(e.target.value)}
+    />
+  );
+}
+Component 2: Registration
+function Register() {
+
+  const [username, setUsername] = useState("");
+
+  return (
+    <input
+      value={username}
+      onChange={(e)=>setUsername(e.target.value)}
+    />
+  );
+}
+
+
+Both components have the same logic.
+
+Problems:
+
+Duplicate code
+Difficult maintenance
+Logic mixed with UI
+
+Custom Hook solves this.
+
+
+Custom Hook Syntax
+function useCustomHook(){
+
+   // state logic
+
+   // effect logic
+
+   return value;
+
+}
+
+What is useReducer()?
+
+useReducer() is a React Hook used for managing complex state logic in functional components.
+
+It is an alternative to useState().
+
+useReducer() is especially useful when:
+
+State has multiple values.
+State updates depend on previous state.
+Multiple actions can change the state.
+You want predictable state management.
+
+
+useState():
+const [count, setCount] = useState(0);
+setCount(count + 1);
+
+
+useReducer():
+const [state, dispatch] = useReducer(reducer, initialState);
+dispatch({type:"INCREMENT"});
+
+Parameters
+Parameter	Meaning
+reducer	        Function containing state update logic
+initialState	Initial state value
+
+Returns
+Return Value	Meaning
+state	        Current state
+dispatch	Function to trigger state changes
+
+useReducer vs useState
+Feature	useState	useReducer
+Simple state	✅ Best	❌ Not required
+Complex state	⚠ Difficult	✅ Best
+Multiple updates	⚠ Many handlers	✅ Actions
+Logic location	Component	Reducer
+Debugging	Medium	Easier
+Large applications	Less suitable	More suitable
