@@ -1256,58 +1256,6 @@ ThemeContext
 ThemeProvider
 Child Component consuming the theme
 
-===========================================================
-Class component lifecycle:
-
-React Functional Hooks and Class Component Lifecycle
-
-React components can be created in two ways:
-
-Class Components (older approach)
-Functional Components with Hooks (modern approach)
-1. Class Component Lifecycle
-
-A React class component goes through three main phases:
-
-1. Mounting
-2. Updating
-3. Unmounting
-Lifecycle Diagram
-Constructor()
-      ↓
-render()
-      ↓
-componentDidMount()
-
-------------------------
-
-Props/State Change
-      ↓
-shouldComponentUpdate()
-      ↓
-render()
-      ↓
-componentDidUpdate()
-
-------------------------
-
-Component Removed
-      ↓
-componentWillUnmount()
-
-===========================================================
-
-Before React 16.8:
-
-State → Class Component Only
-Lifecycle → Class Component Only
-
-After React 16.8:
-
-State + Lifecycle
-        ↓
-Functional Components
-
 Day27:
 What is useLayoutEffect()?
 
@@ -1458,3 +1406,56 @@ Multiple updates	⚠ Many handlers	✅ Actions
 Logic location	Component	Reducer
 Debugging	Medium	Easier
 Large applications	Less suitable	More suitable
+
+Day28:
+===========================================================
+Class component lifecycle:
+
+React Functional Hooks and Class Component Lifecycle
+
+React components can be created in two ways:
+
+Class Components (older approach)
+Functional Components with Hooks (modern approach)
+1. Class Component Lifecycle
+
+A React class component goes through three main phases:
+
+1. Mounting
+2. Updating
+3. Unmounting
+Lifecycle Diagram
+Constructor()
+      ↓
+render()
+      ↓
+componentDidMount()
+
+------------------------
+
+Props/State Change
+      ↓
+shouldComponentUpdate()
+      ↓
+render()
+      ↓
+componentDidUpdate()
+
+------------------------
+
+Component Removed
+      ↓
+componentWillUnmount()
+
+===========================================================
+
+Before React 16.8:
+
+State → Class Component Only
+Lifecycle → Class Component Only
+
+After React 16.8:
+
+State + Lifecycle
+        ↓
+Functional Components
