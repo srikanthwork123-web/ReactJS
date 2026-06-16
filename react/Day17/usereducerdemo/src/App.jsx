@@ -151,8 +151,7 @@ return (
 
 function ReducerHookCart(){
         const initialState = {
-          cart:[]
-        };
+          cart:[]};
 
             const [state,dispatch] =
             useReducer(
