@@ -1635,3 +1635,158 @@ componentDidUpdate	    useEffect(() => {}, [dependency])
 componentWillUnmount	useEffect cleanup
 shouldComponentUpdate	React.memo
 getSnapshotBeforeUpdate	useLayoutEffect
+
+Mounting happens when a component is created for the first time.
+
+constructor()
+       ↓
+getDerivedStateFromProps()
+       ↓
+render()
+       ↓
+componentDidMount()
+
+1. constructor()
+Purpose
+Initialize state
+Bind methods
+Receive props
+
+2. getDerivedStateFromProps()
+Purpose
+
+Used when state depends on props.
+
+It is a static method.
+
+3. render()
+Purpose
+Returns JSX
+Required lifecycle method
+
+Important:
+
+Do not call API here
+Do not update state here
+
+4. componentDidMount()
+
+Runs after component is inserted into DOM.
+
+Common uses:
+
+✅ API calls
+✅ Subscriptions
+✅ Timers
+✅ DOM operations
+
+=====================================================
+2. Updating Phase
+Updating occurs when:
+
+State changes
+Props change
+
+getDerivedStateFromProps()
+          ↓
+shouldComponentUpdate()
+          ↓
+render()
+          ↓
+getSnapshotBeforeUpdate()
+          ↓
+componentDidUpdate()
+
+1. getDerivedStateFromProps()
+
+Runs before every render.
+
+
+2. shouldComponentUpdate()
+
+Controls whether component should re-render.
+true  → render happens
+
+false → render stops
+
+3. render()
+
+Again creates updated UI.
+
+4. getSnapshotBeforeUpdate()
+
+Runs before DOM update.
+
+Used for:
+
+Capturing DOM information
+Scroll position
+
+5. componentDidUpdate()
+
+Runs after update completes.
+
+Used for:
+
+API calls after state change
+DOM updates
+
+================================
+3. Unmounting Phase
+
+Unmounting happens when component is removed.
+
+componentWillUnmount()
+
+Called before removal.
+
+Used for cleanup:
+
+Remove event listeners
+Clear timers
+Cancel subscriptions
+
+Day30:
+Child to Parent data transfer.
+Parent Component
+
+              State
+                |
+                |
+        Callback Function
+                |
+                ↓
+          Child Component
+
+                |
+                |
+          Child Data
+                |
+                ↓
+
+        Callback Function(data)
+
+                |
+                ↓
+
+          Parent Updates State
+
+What is Mutable?
+
+A mutable object can be changed directly after it is created.
+
+The original memory reference remains the same.
+
+What is Immutable?
+
+Immutable means:
+
+Instead of modifying existing data, create a new copy with changes.
+The original object remains unchanged.
+
+What is mutable and immutable in React?
+
+Mutable data can be changed directly without creating a new reference, while immutable data creates a new object or array whenever changes are required. 
+React prefers immutable updates because it uses reference comparison to detect state changes and decide whether to re-render components
+
+
