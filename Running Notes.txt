@@ -1860,3 +1860,250 @@ NPM Libraries for Form Handling
 2. https://www.npmjs.com/package/formik
 3. https://www.npmjs.com/package/yup
 
+Day32:
+HTTP with fetch()
+=================
+fetch('https://jsonplaceholder.typicode.com/todos/1')
+  .then(response => response.json())
+  .then(finaldata => console.log(finaldata))
+
+
+
+Async Await
+===========
+ const fetchProducts = async function () {
+    const products = await fetch("https://fakestoreapi.com/products");
+    const productsJSON = await products.json();
+    setProducts(productsJSON);
+  };
+
+
+
+
+HTTP with axios
+===============
+1. install axios
+   npm i axios
+2. import axios to component
+   import axios from 'axios';   
+3. Use the http methods
+    const fetchUsers = async () => {
+		const url = "https://jsonplaceholder.typicode.com/users";
+		const response = await axios.get(url);
+		setUsers(response.data);
+    };
+  
+
+
+		Axios						        fetch()
+===========================================================================
+-built-in XSRF protection.						-Fetch does not.
+-uses the data property.						-Fetch uses the body property.
+-data contains the object.						-Fetch’s body has to be stringified.
+-request is ok when status is 200 and statusText is ‘OK’.	Fetch request is ok when response object contains the ok property.
+-performs automatic transforms of JSON data.		Fetch is a two-step process when handling JSON data- first, to make the actual request; second, to call the .json() method on the response.
+-allows cancelling request and request timeout.	Fetch does not.
+-has the ability to intercept HTTP requests.	Fetch, by default, doesn’t 
+-has built-in support for download progress.	Fetch does not support upload progress.
+
+
+
+Create an Axios Instance
+========================
+1. Create a separate file named api.js(can be anything) and add the below code
+	import axios from 'axios';
+	const client = axios.create({
+	  baseURL: `http://jsonplaceholder.typicode.com/`
+	});
+	export default client;
+	
+2. Once the default instance is set up, it can then be used anywhere
+   import client from 'api.js'
+   client.get('/users')
+
+
+
+Making multiple requests with axios  
+===================================
+const promise1 = axios.get('https://api.github.com/users/defunkt')
+const promise2 = axios.get('https://api.github.com/users/evanphx')
+const [response1, response2] = await axios.all([promise1, promise2]);
+  
+
+
+Http Interceptors
+=================
+-Interceptor is a feature that allows an application to intercept/modify requests or  responses before they are handled by  .then() or the .catch()
+ 
+ httpRequest ----> Interceptor ----> ModifiedRequest ----> Server
+ ModifiedResponse<---- Interceptor <---- httpResponse <---- Server
+
+Request interceptor use cases:
+-Assume you want to check before making a request if your credentials are valid. 
+ So, instead of actually making an API call, you can check at the interceptor level that your credentials are valid.
+-Assume you need to attach a token to every request made, instead of duplicating 
+ the token addition logic at every Axios call, you can make an interceptor that 
+ attaches a token on every request that is made.
+
+export function myInterceptor() {
+  axios.interceptors.request.use((req) => {
+    req.headers.authorization = "my secret token";
+    return req;
+  });
+}
+-call the above function in app.js
+
+
+response interceptor use cases -
+-Assume you got a response, and judging by the API responses you want to deduce that the user is logged in. 
+ So, in the response interceptor, you can initialize a class that handles the user logged in state and 
+ update it accordingly on the response object you received.
+-Assume you have requested some API with valid API credentials, but you do not have the valid role to access the data. 
+ So, you can trigger an alert from the response interceptor saying that the user is not allowed. 
+ This way you'll be saved from the unauthorized API error handling that you would have to perform on every Axios request that you made.
+ 
+url-->response-->interceptor-->modifiedResponse-->component
+
+axios.interceptors.response.use(
+  res => res,
+  err => {
+    if (err.response.status === 404) {
+      throw new Error(`${err.config.url} not found`);
+    }
+    throw err;
+  }
+);
+
+
+Run interceptor only for few APIs
+---------------------------------
+axios.interceptors.request.use((req) => {
+    console.log(req);
+    if (req.url.includes("users")) {
+      req.headers.authorization = "my secret token";
+    }
+    return req;
+ });
+
+
+remove an interceptor
+---------------------
+const myInterceptor = axios.interceptors.request.use(function () {/*...*/});
+axios.interceptors.request.eject(myInterceptor);
+
+
+
+add interceptors to a custom instance of axios
+-----------------------------------------------
+const client = axios.create();
+client.interceptors.request.use((req) => { 
+	// Logic
+});
+
+
+
+
+React Higher Order Components (HOCs)
+=============================
+-A higher-order component (HOC) is a technique in React for re-using component logic.
+-To Share Common Functionalities accross components without repeating the code.
+-Higher order Component takes one or more components as arguments, and return a new upgraded component.
+  newComponent = higherOrderComponent( originalComponent )
+-Higher order components are JavaScript functions used for adding additional functionalities to the existing component.
+-These functions are pure, which means they are receiving data and returning values according to that data. 
+-Authentication,Logging,Styling and Theming
+-the effect written inside HOC runs only when props change, if a component(Counter) updates its own state(count) without any changes in props, the effect won't run.
+
+use cases:
+-Infinite scroll in three different views, all having different data.
+-Components using data from third party subscription.
+-Components that need logged in user data.
+-Showing multiple lists(e.g. Users, Locations) with search feature.
+
+https://www.codingame.com/playgrounds/8595/reactjs-higher-order-components-tutorial
+
+
+Day33:
+Routing
+=======
+-Single Page Applications(SPAs) are web applications that load a single HTML page and 
+ dynamically update that page as user interacts with the application.
+-Complete page Re-load doesn't happen. only a portion of a page gets loaded.
+-Routing in a Single Page Application is the way to introduce some features for navigating the application  through links.
+-Every time a link is clicked or browser URL changes, React Router makes sure 
+ our application loads component accordingly.
+-The browser should change the URL when we navigate to a different screen.
+-The browser back and forward button should work as expected.
+-Routing links together your application navigation with the navigation features offered by the browser: the address bar and the navigation buttons.
+-React Router offers a way to write your code so that it will show certain components of your app  only if the route matches what you define.
+
+
+
+Types of routes:
+================
+React Router provides two different kind of routes:
+1. BrowserRouter (builds classic URLs)
+2. HashRouter (builds URLs with the hash)
+
+https://application.com/dashboard     // BrowserRouter  ( IE>9 (OR) any other browser )
+https://application.com/#/dashboard   // HashRouter (IE<9)
+
+-Which routes to use is mainly decided by the browsers we want to support. 
+-BrowserRouter uses the History API, which is relatively recent, and not supported in IE9 and below. 
+-If we don’t have to worry about older browsers, BrowserRouter is the recommended one to use.
+
+
+-Below are the 3 components used the most while working with React Router are:
+	1. BrowserRouter, usually aliased as Router (wraps all your Route components)
+	2. Link		(used to generate links to your routes)
+	3. Route    (showing or hiding the components they contain)
+
+
+
+Steps for Routing
+=================
+1. Install  React Router DOM
+   npm install react-router-dom   
+2. Create Components
+   create components like - (Home,About,Contact,NotFound)   
+3. set up the application to work with React Router. (index.js)
+   import { BrowserRouter } from 'react-router-dom';	
+   <BrowserRouter>
+        <App />
+   </BrowserRouter>	
+4. add the <Routes> element (ensures that only one component is rendered at a time)
+   and add <Route> to create the link between components    (Body.js)
+    <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/home" element={<Home />} />
+        <Route exact path="/aboutus" element={<AboutUs />} />
+        <Route exact path="/products" element={<Products />} />
+        <Route path="*" element={<NotFound />} /> (No Match Route)
+    </Routes>	
+5. Add a Link for each component and use to="URL" to link them.
+   <div>
+      <Link to="/">Home </Link>
+      <Link to="/about">About Us </Link>
+      <Link to="/shop">Shop Now </Link>
+    </div>
+	
+
+
+Link vs NavLink
+===============
+-When we use <Link> there isn't any active class on selected element.
+-with <NavLink> the selected element is highlighted because this element adds an active class.
+ <NavLink to='home' className='nav-link'>Home</NavLink>
+-add below css: 
+	nav a.active{text-decoration:none;font-weight:bolder;background-color: aqua}
+
+
+<Link to="/">Home</Link>
+<Link to="/about">About us</Link>
+<Link to="/contactus">Contact Us</Link>
+<Link to="/controlled">Controlled Form</Link>
+<Link to="/uncontrolled">UnControlled Form</Link>
+
+
+
+
