@@ -1921,107 +1921,11 @@ Create an Axios Instance
    import client from 'api.js'
    client.get('/users')
 
-
-
 Making multiple requests with axios  
 ===================================
 const promise1 = axios.get('https://api.github.com/users/defunkt')
 const promise2 = axios.get('https://api.github.com/users/evanphx')
 const [response1, response2] = await axios.all([promise1, promise2]);
-  
-
-
-Http Interceptors
-=================
--Interceptor is a feature that allows an application to intercept/modify requests or  responses before they are handled by  .then() or the .catch()
- 
- httpRequest ----> Interceptor ----> ModifiedRequest ----> Server
- ModifiedResponse<---- Interceptor <---- httpResponse <---- Server
-
-Request interceptor use cases:
--Assume you want to check before making a request if your credentials are valid. 
- So, instead of actually making an API call, you can check at the interceptor level that your credentials are valid.
--Assume you need to attach a token to every request made, instead of duplicating 
- the token addition logic at every Axios call, you can make an interceptor that 
- attaches a token on every request that is made.
-
-export function myInterceptor() {
-  axios.interceptors.request.use((req) => {
-    req.headers.authorization = "my secret token";
-    return req;
-  });
-}
--call the above function in app.js
-
-
-response interceptor use cases -
--Assume you got a response, and judging by the API responses you want to deduce that the user is logged in. 
- So, in the response interceptor, you can initialize a class that handles the user logged in state and 
- update it accordingly on the response object you received.
--Assume you have requested some API with valid API credentials, but you do not have the valid role to access the data. 
- So, you can trigger an alert from the response interceptor saying that the user is not allowed. 
- This way you'll be saved from the unauthorized API error handling that you would have to perform on every Axios request that you made.
- 
-url-->response-->interceptor-->modifiedResponse-->component
-
-axios.interceptors.response.use(
-  res => res,
-  err => {
-    if (err.response.status === 404) {
-      throw new Error(`${err.config.url} not found`);
-    }
-    throw err;
-  }
-);
-
-
-Run interceptor only for few APIs
----------------------------------
-axios.interceptors.request.use((req) => {
-    console.log(req);
-    if (req.url.includes("users")) {
-      req.headers.authorization = "my secret token";
-    }
-    return req;
- });
-
-
-remove an interceptor
----------------------
-const myInterceptor = axios.interceptors.request.use(function () {/*...*/});
-axios.interceptors.request.eject(myInterceptor);
-
-
-
-add interceptors to a custom instance of axios
------------------------------------------------
-const client = axios.create();
-client.interceptors.request.use((req) => { 
-	// Logic
-});
-
-
-
-
-React Higher Order Components (HOCs)
-=============================
--A higher-order component (HOC) is a technique in React for re-using component logic.
--To Share Common Functionalities accross components without repeating the code.
--Higher order Component takes one or more components as arguments, and return a new upgraded component.
-  newComponent = higherOrderComponent( originalComponent )
--Higher order components are JavaScript functions used for adding additional functionalities to the existing component.
--These functions are pure, which means they are receiving data and returning values according to that data. 
--Authentication,Logging,Styling and Theming
--the effect written inside HOC runs only when props change, if a component(Counter) updates its own state(count) without any changes in props, the effect won't run.
-
-use cases:
--Infinite scroll in three different views, all having different data.
--Components using data from third party subscription.
--Components that need logged in user data.
--Showing multiple lists(e.g. Users, Locations) with search feature.
-
-https://www.codingame.com/playgrounds/8595/reactjs-higher-order-components-tutorial
-
 
 Day33:
 Routing
@@ -2097,12 +2001,19 @@ Link vs NavLink
 -add below css: 
 	nav a.active{text-decoration:none;font-weight:bolder;background-color: aqua}
 
+React Router Main Components
 
-<Link to="/">Home</Link>
-<Link to="/about">About us</Link>
-<Link to="/contactus">Contact Us</Link>
-<Link to="/controlled">Controlled Form</Link>
-<Link to="/uncontrolled">UnControlled Form</Link>
+React Router provides:
+
+Component	Purpose
+BrowserRouter	Enables routing
+Routes	Container for routes
+Route	Defines URL and component
+Link	Navigate without refresh
+NavLink	Link with active style
+useNavigate	Navigate programmatically
+useParams	Read URL parameters
+Outlet	Nested routes
 
 
 
