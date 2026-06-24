@@ -9,7 +9,9 @@ import NavBar from './NavBar.jsx'
 import {BrowserRouter,Routes,Route,Link} from 'react-router-dom'
 import NotFound from './NotFound.jsx'
 import QueryParams from './QueryParams.jsx'
-
+import HomeChildOne from './HomeChildOne.jsx'
+import HomeChildTwo from './HomeChildTwo.jsx'
+import ProtectedRoute from './ProtectedRoute.jsx'
 
 function App() {
   return(
@@ -17,7 +19,12 @@ function App() {
     <BrowserRouter>
     <NavBar/>
     <Routes>
-    <Route path="/" element={<Home/>} />
+    <Route path="/" element={<Home/>}>
+         <Route index element={<HomeChildOne/>}/>
+         <Route path="homechildone" element={<HomeChildOne/>}/>
+         <Route path="homechildtwo" element={<HomeChildTwo/>}/>
+    </Route>
+    <Route path="/home" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
     <Route path="/about/:id" element={<About/>} />
     <Route path="/contactus/:id/:name" element={<Contact/>} />
     <Route path="/controlled" element={<ControlledForm/>} />

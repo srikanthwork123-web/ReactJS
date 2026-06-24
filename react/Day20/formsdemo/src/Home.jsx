@@ -1,8 +1,8 @@
 import React from 'react'
-import { useNavigate,Link,createSearchParams } from 'react-router-dom';
+import { useNavigate,Link,createSearchParams, Outlet } from 'react-router-dom';
 
 function Home(){
-    
+
 let id=101;
 let name="Koteswar";  
 let title="QueryParam"
@@ -17,7 +17,7 @@ navigate("/about");
 };
 
 const navigateHandler=(title,price)=>{
-navigate({pathname:"/queryparams",search:`?${createSearchParams({title,price})}`});
+   navigate({pathname:"/queryparams",search:`?${createSearchParams({title,price})}`});
 }
 
     return(
@@ -39,7 +39,14 @@ navigate({pathname:"/queryparams",search:`?${createSearchParams({title,price})}`
 
 <h1>Query Params</h1>
 <button className="btn btn-danger w-50" onClick={() => navigateHandler(title, price)}>QueryParams</button>
+
+<h1>Nested Routing</h1>
+<Link to="homechildone">Go To Child1</Link><br/>
+<Link to="homechildtwo">Go To Child2</Link><br/>
+<Outlet/>
 </>
     );
 }
+
+
 export default Home

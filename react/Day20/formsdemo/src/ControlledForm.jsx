@@ -1,6 +1,8 @@
 import {useState} from 'react'
+ import {useNavigate} from "react-router-dom";
 
 function ControlledForm() {
+    const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({
@@ -29,6 +31,7 @@ function ControlledForm() {
 
     if (!newErrors.email && !newErrors.password) {
       console.log(email +''+password);
+      navigate("/home");
     }
   }
   return (

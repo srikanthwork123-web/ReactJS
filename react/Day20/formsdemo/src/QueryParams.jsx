@@ -1,7 +1,11 @@
 import React from 'react'
-import {useSearchParams} from 'react-router-dom'
+import {useSearchParams,useLocation} from 'react-router-dom'
 
 function QueryParams() {
+// let location= useLocation();
+// let queryParams = new URLSearchParams(location.search);
+// let title1 =queryParams.get('title');
+// let price1 =queryParams.get('price');
   const [searchParams]=useSearchParams();
 let title =
 searchParams.get("title");
