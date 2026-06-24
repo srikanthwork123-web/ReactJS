@@ -2018,3 +2018,166 @@ Outlet	Nested routes
 
 
 
+			
+			
+Navigating Programatically
+========================== 
+import React from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+export default function AboutUs() {
+  const navigate = useNavigate();
+  const func1 = function () {
+    alert("do something");// logic
+    navigate('/products');
+  };
+  return (
+    <>
+      <h1>this is about us component</h1>
+      <Link to="/products">Take me to products page</Link>
+      <button onClick={func1}>Take me To product</button>
+    </>
+  );
+}
+
+
+
+Navigate to previous/next route
+===============================
+const navigate = useNavigate();
+<button onClick={()=>navigate(-1)}>Go Back</button>
+<button onClick={()=>navigate(1)}>Go Next</button>
+
+
+
+Route Params
+============
+1. Path params    (productdetails/101)
+2. Query Params   (search?name=sachin&age=25)
+
+
+Path Params
+-----------
+1. configure the route
+   <Route path="/productdetails/:id" element={<ProductDetails />} />
+2. create a link to that route (ProductList - for Every Product)
+   <Link to={`/productdetails/${id}`}> View Details</Link>
+3. collect the params data and display
+   const { id } = useParams();
+   <h1>This is the details of product - {id}</h1>
+   
+   
+   
+Query params
+------------
+1. configure the route
+   <Route path="/productdetails" element={<ProductDetails />} />
+   
+2. create a link & navigation logic
+  const navigate = useNavigate();
+  const navigateHandler = (title, price) => {
+    navigate({
+      pathname: "/productdetails",
+      search: `?${createSearchParams({ title, price })}`,
+    });
+  };
+   <button className="btn btn-secondary" onClick={() => {
+              navigateHandler(title, price);
+            }}>query param</button>
+
+3. collect params data and display
+  const [searchParams] = useSearchParams();
+  useEffect(() => {
+    const currentParams = Object.fromEntries([...searchParams]);
+    console.log(currentParams); // get new values onchange
+	console.log(searchParams.get("title"), searchParams.get("price"));
+  }, [searchParams]);
+  
+  
+  
+Nested Routing
+==============
+-nested routing is used so that a parent component has control over its child component 
+ at the route level.
+-Route: Products (nested Routes: featured Products, New products)
+	<Route path="/products" element={<Products />}>
+        <Route path="featured" element={<FeaturedProducts />} />
+        <Route path="new" element={<NewProducts/>}/>
+    </Route>
+-add a nav in Parent(products) component, and a outlet	
+     <div className="courses-nav">
+        <Link to="featured">featured</Link>
+        <Link to="new">New</Link>
+      </div>
+      <Outlet />
+	  
+	  
+
+	  
+Index Route
+===========
+-A child route with no path that renders in the parent's outlet at the parent's URL.
+-Child Path would remain same like parent route.
+	<Route path="/products" element={<Products />}>
+		<Route index element={<FeaturedProducts />} />
+        <Route path="featured" element={<FeaturedProducts />} />
+        <Route path="new" element={<NewProducts/>}/>
+    </Route>
+	<Outlet />
+	
+
+Protected Routes
+================
+-Protected Routes are routes that can only be accessed if a condition is met(usually, if user is properly authenticated). 
+-It returns a Route that either renders a component or redirects a user to another route based on a set condition.
+
+-create a component that accepts another component and other route details as props.
+-check a condition to confirm if user is authenticated or not. 
+-if the value is true, render the component, else, Redirect route to /signin page.
+
+	
+	
+Replace
+=======
+-replaces the current location instead of pushing a new one onto the browser history stack.
+-Without replace : Adds a new entry to the browser history (Back button will go back)
+-With replace : Replaces current URL (Back button won’t return to the previous URL)
+-HTML Code : <Navigate to="/home" replace />
+-Javascript code: navigate("/home", { replace: true })
+-After successful Login,we use the above code to go to home page
+ 'replace' attribute prevents users from pressing Back and returning to the login page after successful login.
+-When to Use replace:
+	1. After login/logout to prevent users from going back to the login page.
+	2. For redirects where you don’t want the previous page in history.
+	3. For reset navigation flows.
+
+
+Exact
+=====
+-The exact param disables the partial matching for a route and makes sure that it only  returns the route if the path is an EXACT match to the current url.
+-If you're using React Router v6+, don’t use exact—it’s no longer needed
+-In react-router-dom v6, all routes are matched exactly by default.
+	
+	
+	
+	
+
+Code Splitting/Lazy Loading
+===========================
+-Code-Splitting is a feature supported by bundlers like Webpack which can create 
+ multiple bundles that can be dynamically loaded at runtime.
+-The best way to introduce code-splitting into your app is through the dynamic import()
+
+-Lazy loading helps to load a module/component whenever it is required(on-demand).
+-React.lazy() allows  to render a dynamic import as a regular component.
+	before - import OtherComponent from './OtherComponent';  
+    after- const OtherComponent = React.lazy(() => import('./OtherComponent')); 
+-lazy component should then be rendered inside a Suspense component, which allows us to show some fallback content (such as a loading indicator) while we’re waiting for the lazy component to load.
+ <Suspense fallback={<div>Loading...</div>}>
+     <OtherComponent />
+ </Suspense>
+ 
+
+
+
+
