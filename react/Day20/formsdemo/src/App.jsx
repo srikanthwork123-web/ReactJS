@@ -24,7 +24,7 @@ function App() {
          <Route path="homechildone" element={<HomeChildOne/>}/>
          <Route path="homechildtwo" element={<HomeChildTwo/>}/>
     </Route>
-    <Route path="/home" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
+    <Route path="/home" element={<ProtectedRoute ><Home/></ProtectedRoute>}/>
     <Route path="/about/:id" element={<About/>} />
     <Route path="/contactus/:id/:name" element={<Contact/>} />
     <Route path="/controlled" element={<ControlledForm/>} />
