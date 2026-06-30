@@ -34,7 +34,7 @@ function Navigation() {
                     {authUser ? (
                         <>
                             <Navbar.Text className="me-3 text-white">
-                                {authUser.name || authUser.email || 'Logged in'}
+                                {authUser.userName || 'Logged in'}
                             </Navbar.Text>
                             <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
                         </>

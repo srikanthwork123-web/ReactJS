@@ -29,9 +29,9 @@ function App() {
             <Route path="/" element={<Login />} />
 
             {/* Department Routes */}
-            <Route path="/departments" element={<RequireAuth><DepartmentList /></RequireAuth>} />
-            <Route path="/departments/add" element={<RequireAuth><DepartmentForm /></RequireAuth>} />
-            <Route path="/departments/edit/:id" element={<RequireAuth><DepartmentForm /></RequireAuth>} />
+            <Route path="/departments" element={<DepartmentList />} />
+            <Route path="/departments/add" element={<DepartmentForm />} />
+            <Route path="/departments/edit/:id" element={<DepartmentForm />} />
 
             {/* Employee Routes */}
             <Route path="/employees" element={<RequireAuth><EmployeeList /></RequireAuth>} />
@@ -39,9 +39,9 @@ function App() {
             <Route path="/employees/edit/:id" element={<RequireAuth><EmployeeForm /></RequireAuth>} />
 
             {/* Order Routes */}
-            <Route path="/orders" element={<RequireAuth><OrdersList /></RequireAuth>} />
-            <Route path="/orders/add" element={<RequireAuth><OrderForm /></RequireAuth>} />
-            <Route path="/orders/edit/:id" element={<RequireAuth><OrderForm /></RequireAuth>} />
+            <Route path="/orders" element={<OrdersList />} />
+            <Route path="/orders/add" element={<OrderForm />} />
+            <Route path="/orders/edit/:id" element={<OrderForm />} />
 
             <Route path="*" element={<NoRecordFound />} />
           </Routes>

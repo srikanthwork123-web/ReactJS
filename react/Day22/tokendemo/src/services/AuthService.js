@@ -1,4 +1,4 @@
-import PublicApi from "./PublicApi";
+import Api from "./Api";
 
 function setAuthUser(user, flag = true) {
     sessionStorage.setItem("authUser", JSON.stringify(user));
@@ -33,7 +33,7 @@ function removeAuthUser() {
 }
 
 function authenticate(loginUser) {
-    return PublicApi.post(`/Authenticate/UserSignIn1`, loginUser);
+    return Api.post(`/Authenticate/UserSignIn1`, loginUser);
 }
 
 const AuthService = {

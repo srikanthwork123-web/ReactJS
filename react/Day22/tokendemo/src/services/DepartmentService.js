@@ -1,21 +1,21 @@
-import api from './api';
+import Api from './Api';
 
 export const getDepartments = async () => {
-  return await api.get('/Departement/GetAllDepartments');
+  return await Api.get('/Departement/GetAllDepartments');
 };
 
 export const getDepartmentById = async (id) => {
-  return await api.get(`/Departement/GetDepartmentByid/${id}`);
+  return await Api.get(`/Departement/GetDepartmentByid/${id}`);
 };
 
 export const createDepartment = async (department) => {
-  return await api.post('/Departement/AddDepartment', department);
+  return await Api.post('/Departement/AddDepartment', department);
 };
 
 export const updateDepartment = async (department) => {
-  return await api.put('/Departement/UpdateDepartment', department);
+  return await Api.put('/Departement/UpdateDepartment', department);
 };
 
 export const deleteDepartment = async (id) => {
-  return await api.delete(`/Departement/Deletedepartment/${id}`);
+  return await Api.delete(`/Departement/Deletedepartment/${id}`);
 };

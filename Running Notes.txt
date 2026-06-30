@@ -2177,6 +2177,75 @@ Code Splitting/Lazy Loading
      <OtherComponent />
  </Suspense>
  
+Day41:
+Http Interceptors
+=================
+-Interceptor is a feature that allows an application to intercept/modify requests or  responses before they are handled by  .then() or the .catch()
+ 
+ httpRequest ----> Interceptor ----> ModifiedRequest ----> Server
+ ModifiedResponse<---- Interceptor <---- httpResponse <---- Server
+
+Request interceptor use cases:
+-Assume you want to check before making a request if your credentials are valid. 
+ So, instead of actually making an API call, you can check at the interceptor level that your credentials are valid.
+-Assume you need to attach a token to every request made, instead of duplicating 
+ the token addition logic at every Axios call, you can make an interceptor that 
+ attaches a token on every request that is made.
+
+export function myInterceptor() {
+  axios.interceptors.request.use((req) => {
+    req.headers.authorization = "my secret token";
+    return req;
+  });
+}
+-call the above function in app.js
+
+response interceptor use cases -
+-Assume you got a response, and judging by the API responses you want to deduce that the user is logged in. 
+ So, in the response interceptor, you can initialize a class that handles the user logged in state and 
+ update it accordingly on the response object you received.
+-Assume you have requested some API with valid API credentials, but you do not have the valid role to access the data. 
+ So, you can trigger an alert from the response interceptor saying that the user is not allowed. 
+ This way you'll be saved from the unauthorized API error handling that you would have to perform on every Axios request that you made.
+ 
+url-->response-->interceptor-->modifiedResponse-->component
+
+axios.interceptors.response.use(
+  res => res,
+  err => {
+    if (err.response.status === 404) {
+      throw new Error(`${err.config.url} not found`);
+    }
+    throw err;
+  }
+);
+
+
+Run interceptor only for few APIs
+---------------------------------
+axios.interceptors.request.use((req) => {
+    console.log(req);
+    if (req.url.includes("users")) {
+      req.headers.authorization = "my secret token";
+    }
+    return req;
+ });
+
+
+remove an interceptor
+---------------------
+const myInterceptor = axios.interceptors.request.use(function () {/*...*/});
+axios.interceptors.request.eject(myInterceptor);
+
+
+
+add interceptors to a custom instance of axios
+-----------------------------------------------
+const client = axios.create();
+client.interceptors.request.use((req) => { 
+	// Logic
+});
+
 
 
 
