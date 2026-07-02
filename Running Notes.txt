@@ -2246,7 +2246,29 @@ client.interceptors.request.use((req) => {
 	// Logic
 });
 
+Day42:
+store --> Provider(react-redux) -> root componnet
+=========
+state --> useSelector(react-redux) - Account.jsx
+reducer(state,action)
+action -->
+dispatch({}) --> useDispatch(react-redux) - Form.jsx
+=========
+Day43:
+Redux Architecture
 
+Redux follows a predictable data flow:
 
-
-
+Component
+    |
+    |
+dispatch(action)
+    |
+    |
+Reducer
+    |
+    |
+Store Updated
+    |
+    |
+Component Re-render

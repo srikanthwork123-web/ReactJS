@@ -12,8 +12,8 @@ function App() {
 
   return (
     <>
-     <CustomHookCounter/>
-     <CustomHookUsers/>
+     {/* <CustomHookCounter/>
+     <CustomHookUsers/> */}
      <ReducerHookCounter/>
      <ReducerHookLogin/>
      <ReducerHookCart/>
