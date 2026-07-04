@@ -1,4 +1,4 @@
-import {createStore } from "redux";
+import { createStore } from "redux";
 
 const initialState = {
   balance: 0,
@@ -25,5 +25,4 @@ const accountReducer = (state = initialState, action) => {
 };
 
 const store = createStore(accountReducer);
-
 export default store;

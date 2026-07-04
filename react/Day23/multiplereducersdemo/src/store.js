@@ -1,4 +1,4 @@
-import {createStore } from "redux";
+import {combineReducers, createStore } from "redux";
 
 const initialState = {
   balance: 0,
@@ -24,6 +24,21 @@ const accountReducer = (state = initialState, action) => {
   }
 };
 
-const store = createStore(accountReducer);
+const transactionReducer = (state = [], action) => {
+  switch (action.type) {
+    case "ADD_TRANSACTION":
+      return [...state, {amount: action.payload.amount, type: action.payload.type, date: action.payload.date}];
+    default:
+      return state;
+  }
+};
+
+const rootReducer = combineReducers({
+  account: accountReducer,
+  transactions: transactionReducer,
+  
+});
+
+const store = createStore(rootReducer);
 
 export default store;
