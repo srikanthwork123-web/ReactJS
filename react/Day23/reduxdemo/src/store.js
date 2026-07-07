@@ -1,7 +1,7 @@
-import {createStore } from "redux";
+import {combineReducers, createStore } from "redux";
 
 const initialState = {
-  balance: 0,
+  balance: 1,
   fullName: "",
   mobile: null,
 };

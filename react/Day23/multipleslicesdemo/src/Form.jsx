@@ -1,20 +1,29 @@
-import React,{ useState} from 'react'
-import { useDispatch } from 'react-redux'
-import { deposit, withdraw, updateName, updateMobile, reset } from "./store";
+import { useState } from "react";
+import {
+  deposit,
+  withdraw,
+  updateName,
+  updateMobile,
+  reset,
+  addTransaction,
+} from "./store";
+import { useDispatch, useSelector } from "react-redux";
 
-function Form() {
-const [amount, setAmount] = useState("");
-const [fullName, setFullName] = useState("");
-const [mobile, setMobile] = useState("");
+export default function Form() {
+  const [amount, setAmount] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [mobile, setMobile] = useState("");
 
- let dispatch = useDispatch();
+   let dispatch = useDispatch();
+
+  //let accntName = useSelector((state) => state.user.fullName);
 
   return (
     <>
       <div className="container">
-          <h2>Account Form</h2>
-           <div className="row">
-            <div className="col-5 col-lg-5 ">
+        <h2>Account Form</h2>
+        <div className="row">
+          <div className="col-5 col-lg-5 ">
             <input
               type="number"
               className="form-control"
@@ -30,6 +39,14 @@ const [mobile, setMobile] = useState("");
             className="btn btn-danger col-lg-1 col-3 mx-2"
             onClick={() => {
               dispatch(withdraw(amount));
+              dispatch(
+                addTransaction({
+                  timestamp: new Date().toISOString(),
+                  type: "debit",
+                  //accountName: accntName,
+                  amount: amount,
+                })
+              );
               setAmount("");
             }}
           >
@@ -39,6 +56,15 @@ const [mobile, setMobile] = useState("");
             className="btn btn-primary col-lg-1 col-3"
             onClick={() => {
               dispatch(deposit(amount));
+              dispatch(
+                addTransaction({
+                  timestamp: new Date().toISOString(),
+                  type: "credit",
+                  //accountName: accntName,
+                  amount: amount,
+                })
+              );
+
               setAmount("");
             }}
           >
@@ -94,16 +120,14 @@ const [mobile, setMobile] = useState("");
       </div>
       <div className="mt-2">
         <button
-          className="btn btn-danger ccol-lg-1 col-2"
+          className="btn btn-danger ccol-lg-1 col-3"
           onClick={() => {
             dispatch(reset());
           }}
         >
           Reset
         </button>
-      </div>     
+      </div>
     </>
-  )
+  );
 }
-
-export default Form

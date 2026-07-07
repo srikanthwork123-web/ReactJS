@@ -1,10 +1,12 @@
-import { createSlice, configureStore } from "@reduxjs/toolkit";
+import { createSlice, configureStore, combineReducers } from "@reduxjs/toolkit";
 
-const state = [{
+const state = {
   balance: 0,
   fullName: "",
   mobile: null,
-}];
+};
+
+const transactions = [];
 
 const userSlice = createSlice({
   name: "user",
@@ -31,10 +33,21 @@ const userSlice = createSlice({
     },
   },
 });
+const transactionSlice = createSlice({
+  name: "transaction",
+  initialState: transactions,
+  reducers: {
+    addTransaction: (state, action) => {
+      //{date:"",type:"debit/credit",accountname:''}
+      state.push(action.payload);
+    },
+  },
+});
 
 const store = configureStore({
   reducer: {
     user: userSlice.reducer,
+    transaction: transactionSlice.reducer,
   },
 });
 
@@ -42,3 +55,5 @@ export default store;
 
 export const { updateMobile, updateName, withdraw, deposit, reset } =
   userSlice.actions;
+
+export const { addTransaction } = transactionSlice.actions;

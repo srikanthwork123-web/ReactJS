@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 function Account() {
  let data = useSelector((state) => {
     console.log(state);
-    return state;
-  });
+    return state.user;
+ });
   return (
    <>
       <div className="container">

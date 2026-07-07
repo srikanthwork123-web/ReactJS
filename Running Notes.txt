@@ -2272,3 +2272,8 @@ Store Updated
     |
     |
 Component Re-render
+
+npm i bootstrap
+npm i redux
+npm i react-redux
+npm i @reduxjs/toolkit
